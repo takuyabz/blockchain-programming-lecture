@@ -75,6 +75,126 @@ Watch Usage
  › Press Enter to trigger a test run.
 ```
 
+``` bash terminal
+code block.test.js
+```
+
+``` js block.test.js
+const Block = require('./block');
+
+describe('Block', () => {
+
+  let data, lastblock, block;
+
+  beforeEach(()=>{
+    data = "sato";
+    lastBlock = Block.genesis();
+    // block = Block.mineBlock(lastBlock, data);
+    block = Block.mineBlock(lastBlock, "yamada");
+  });
+  it('data test', ()=> {
+    expect(block.data).toEqual(data);
+  });
+
+  it('hash test', () => {
+    // expect(block.lastHash).toEqual(lastBlock.hash);
+    expect(block.lastHash).toEqual("suzuki");
+  });
+});
+```
+
+``` bash terminal result
+ FAIL  ./block.test.js
+  Block
+    ✕ data test (4ms)
+    ✕ hash test (1ms)
+
+  ● Block › data test
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "sato"
+    Received: "yamada"
+
+      12 |   });
+      13 |   it('data test', ()=> {
+    > 14 |     expect(block.data).toEqual(data);
+         |                        ^
+      15 |   });
+      16 | 
+      17 |   it('hash test', () => {
+
+      at Object.toEqual (block.test.js:14:24)
+
+  ● Block › hash test
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: "suzuki"
+    Received: "h4r0-h123"
+
+      17 |   it('hash test', () => {
+      18 |     // expect(block.lastHash).toEqual(lastBlock.hash);
+    > 19 |     expect(block.lastHash).toEqual("suzuki");
+         |                            ^
+      20 |   });
+      21 | });
+
+      at Object.toEqual (block.test.js:19:28)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 2 total
+Snapshots:   0 total
+Time:        0.213s, estimated 1s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+```
+
+``` bash terminal
+code block.test.js
+```
+
+``` js block.test.js
+const Block = require('./block');
+
+describe('Block', () => {
+
+  let data, lastblock, block;
+
+  beforeEach(()=>{
+    data = "sato";
+    lastBlock = Block.genesis();
+    block = Block.mineBlock(lastBlock, data);
+    // block = Block.mineBlock(lastBlock, "yamada");
+  });
+  it('data test', ()=> {
+    expect(block.data).toEqual(data);
+  });
+
+  it('hash test', () => {
+    expect(block.lastHash).toEqual(lastBlock.hash);
+    // expect(block.lastHash).toEqual("suzuki");
+  });
+});
+```
+
+``` bash terminal result
+ PASS  ./block.test.js
+  Block
+    ✓ data test (1ms)
+    ✓ hash test (1ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.243s, estimated 1s
+Ran all test suites.
+
+Watch Usage: Press w to show more.
+
+```
+
 ## 補足解説
 
 単体（ユニット）テストを今回は組み込みました。
@@ -89,7 +209,18 @@ beforeEachでは各テストコードを実施する前に
 package.jsonを編集し、コマンドを実行し、
 テストを実行しています。
 
-単体テストを組み込むことで、
+jestではwatchAllオプションをつけて、
+ソースコードが修正されたら自動的に
+テストが実行されるようになっています。
+
+試しに、あえて失敗するコードを記述すると、
+テストが失敗したという旨のメッセージが
+ターミナルに出力されます。
+
+もう一度戻すと、元どおりテストが通る
+ことが確認できます。
+
+このようにして、単体テストを組み込むことで、
 動作が保証された状態で、ソースコードを
 拡張していくことができるようになります。
 
