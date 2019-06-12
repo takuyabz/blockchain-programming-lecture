@@ -1,0 +1,19 @@
+{
+  "name": "lesson002",
+  "version": "1.0.0",
+  "description": "~~~ bash terminal npm init -y",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-test": "nodemon dev-test"
+  },
+  "keywords": [],
+  "author": "Takuya Sato <business@satotakuya.jp> (https://www.satotakuya.jp/)",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.9-1"
+  }
+}
