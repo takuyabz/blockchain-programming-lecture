@@ -8,6 +8,46 @@
 ブロックチェーンを更新する。
 
 ``` bash terminal
+mkdir blockchain
+mv block.js blockchain/block.js
+mv block.test.js blockchain/block.test.js
+mv blockchain.js blockchain/index.js
+mv blockchain.test.js blockchain/index.test.js
+```
+
+``` bash terminal
+code blockchain/index.test.js
+```
+
+``` js blockchain/index.test.js
+const Blockchain = require("./index");
+// ...
+```
+
+``` bash terminal
+npm run test
+mkdir app
+code app/index.js
+```
+
+``` js app/index.js
+const express = require('express');
+const Blockchain = require('../blockchain');
+
+const HTTP_PORT = process.env.HTTP_PORT || 3001;
+const app = express();
+const bc = new Blockchain();
+
+app.get('/blocks', (req, res) => {
+  res.json(bc.chain);
+});
+
+app.listen(HTTP_PORT, () => console.log(`Listening on port ${HTTP_PORT}`));
+
+```
+
+
+``` bash terminal
 code blockchain.js
 ```
 
