@@ -1,17 +1,3 @@
-# チュートリアル
-
-今回以降の講座では、一つ前のLessonが
-完了している前提で解説を進めていますので、
-まだ前のLessonが完了していない場合は、
-前のLessonが完了してからチャレンジしてください。
-
-ウォレットキーの公開
-
-``` bash terminal
-code app/index.js
-```
-
-``` js app/index.js
 const express = require('express');
 const bodyParser = require("body-parser");
 const Blockchain = require('../blockchain');
@@ -48,6 +34,7 @@ app.get('/transactions', (req, res) => {
 app.post('/transact', (req, res) => {
   const { receipient, amount } = req.body;
   const transaction = wallet.createTransaction(receipient, amount, tp );
+  p2pServer.broadcastTransaction(transaction);
   res.redirect('/transactions');
 })
 
@@ -57,30 +44,3 @@ app.get('/public-key', (req, res) => {
 
 app.listen(HTTP_PORT, () => console.log(`Listening on port ${HTTP_PORT}`));
 p2pServer.listen();
-
-```
-
-``` bash terminal
-npm run dev
-```
-
-### POST MAN
-
-``` POST MAN REQUEST
-GET
-localhost:3001/public-key
-```
-
-``` POST MAN RESULT
-{
-    "publickey": "0488af909beb3d6f45e3ae163f580882c5edfb03662ff972fb6684d318c973f8448765f19af7a9b38ff686bf2000e720784d28d0c21976343b63a6c4d64b9e1917"
-}
-```
-
-## 補足解説
-
-ウォレット公開キーの公開方法を取り扱いました。
-
-このレッスンは以上になります。
-
-お疲れ様でした。
