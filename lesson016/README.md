@@ -168,6 +168,109 @@ Watch Usage
 
 ```
 
+``` bash terminal
+code dev-test.js
+```
+
+``` js dev-test.js
+const Blockchain = require('./blockchain');
+
+const bc = new Blockchain();
+
+for ( let i = 0; i < 10; i++) {
+  console.log(bc.addBlock(`hello ${i}`).toString());
+}
+
+```
+
+``` bash terminal
+npm run dev-test
+```
+
+``` bash terminal result
+fixer: ~/dev/lectures/20190613/t2/lesson016 [git:master] 
+🌏 >npm run dev-test
+
+> lesson002@1.0.0 dev-test /Users/tech/dev/lectures/20190613/t2/lesson016
+> nodemon dev-test
+
+[nodemon] 1.19.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node dev-test.js`
+Block
+      Timestamp : 1560392202768
+      lastHash  : h4r0-h123
+      hash      : 0004d3176f
+      nonce     : 14589
+      difficulty: 3
+      data      : hello 0
+Block
+      Timestamp : 1560392203083
+      lastHash  : 0004d3176f
+      hash      : 0000d53a44
+      nonce     : 27876
+      difficulty: 4
+      data      : hello 1
+Block
+      Timestamp : 1560392206114
+      lastHash  : 0000d53a44
+      hash      : 000a139309
+      nonce     : 283225
+      difficulty: 3
+      data      : hello 2
+Block
+      Timestamp : 1560392206378
+      lastHash  : 000a139309
+      hash      : 0000a44b3f
+      nonce     : 26705
+      difficulty: 4
+      data      : hello 3
+Block
+      Timestamp : 1560392206883
+      lastHash  : 0000a44b3f
+      hash      : 00000dc4cd
+      nonce     : 54512
+      difficulty: 5
+      data      : hello 4
+Block
+      Timestamp : 1560392211126
+      lastHash  : 00000dc4cd
+      hash      : 0000c9efc4
+      nonce     : 437393
+      difficulty: 4
+      data      : hello 5
+Block
+      Timestamp : 1560392211309
+      lastHash  : 0000c9efc4
+      hash      : 0000090881
+      nonce     : 19495
+      difficulty: 5
+      data      : hello 6
+Block
+      Timestamp : 1560392215955
+      lastHash  : 0000090881
+      hash      : 00005e3f23
+      nonce     : 476953
+      difficulty: 4
+      data      : hello 7
+Block
+      Timestamp : 1560392218860
+      lastHash  : 00005e3f23
+      hash      : 00000617f9
+      nonce     : 305645
+      difficulty: 5
+      data      : hello 8
+Block
+      Timestamp : 1560392222285
+      lastHash  : 00000617f9
+      hash      : 000004d138
+      nonce     : 366730
+      difficulty: 4
+      data      : hello 9
+[nodemon] clean exit - waiting for changes before restart
+```
+
 ## 補足解説
 
 今回は、動的採掘難易度の最適化を取り扱いました。
